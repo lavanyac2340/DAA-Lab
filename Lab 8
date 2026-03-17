@@ -1,0 +1,27 @@
+class BellmanFord {
+    public static void main(String[] args) {
+
+        int V = 6;
+        int[] dist = {0, 999, 999, 999, 999, 999}; // A=0
+
+        int[][] edges = {
+            {0,1,6}, {0,2,4}, {0,3,5},
+            {1,4,-1}, {2,4,3}, {3,2,-2},
+            {3,5,-1}, {4,5,3}, {2,1,-2}
+        };
+
+        // Relax edges
+        for (int i = 1; i < V; i++) {
+            for (int[] e : edges) {
+                if (dist[e[0]] + e[2] < dist[e[1]]) {
+                    dist[e[1]] = dist[e[0]] + e[2];
+                }
+            }
+        }
+
+        char[] v = {'A','B','C','D','E','F'};
+        for (int i = 0; i < V; i++) {
+            System.out.println(v[i] + " = " + dist[i]);
+        }
+    }
+}
